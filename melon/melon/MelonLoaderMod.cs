@@ -18,7 +18,11 @@ namespace melon
 
     public class Melon : MelonMod
     {
-         public override void OnUpdate()
+        public void SwapAvatar(Avatar newAvatar)
+        {
+            Avatar newavatar = newAvatar;
+        }
+        public override void OnUpdate()
         {
             // string avatarName won't get send in as it isn't part of ML, you need to get it yourself
             // (probably though the getcurrentavatar method)
@@ -26,8 +30,12 @@ namespace melon
             if (BoneLib.HelperMethods.GetCleanObjectName(avatar.name) == "char_tall")
             {
                 LoggerInstance.Msg(avatar.name);
-                Player.rigManager.SwitchAvatar();
+                Player.rigManager.SwapAvatar(newAvatar);
+
+
             }
         }
+
     }
+
 }
