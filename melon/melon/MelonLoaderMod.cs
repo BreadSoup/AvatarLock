@@ -3,7 +3,14 @@ using SLZ.VRMK;
 using BoneLib;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using Il2CppSystem;
+using SLZ.Rig;
+using SLZ.Marrow.Warehouse;
+using SLZ.Bonelab;
+using Cysharp;
+
+
 
 namespace melon
 {
@@ -18,24 +25,50 @@ namespace melon
 
     public class Melon : MelonMod
     {
-        public void SwapAvatar(Avatar newAvatar)
-        {
-            Avatar newavatar = newAvatar;
-        }
+
         public override void OnUpdate()
         {
-            // string avatarName won't get send in as it isn't part of ML, you need to get it yourself
-            // (probably though the getcurrentavatar method)
+
             Avatar avatar = Player.GetCurrentAvatar();
-            if (BoneLib.HelperMethods.GetCleanObjectName(avatar.name) == "char_tall")
+
+            string Short = "fa534c5a83ee4ec6bd641fec424c4142.Avatar.CharFurv4GB";
+
+            var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID;
+
+            if (barcode != Short)
             {
-                LoggerInstance.Msg(avatar.name);
-                Player.rigManager.SwapAvatar(newAvatar);
+                Player.rigManager.SwapAvatarCrate(Short);
+                LoggerInstance.Msg(barcode);
 
-
+            }
+            if (BoneLib.HelperMethods.GetCleanObjectName(avatar.name) == "char_strong")
+            {
+                LoggerInstance.Msg(barcode);
             }
         }
 
-    }
+        private void WarehouseReady()
+        {
+            var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode._id;
 
+            var currentAvatarBarcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID;
+
+            var bootstrapperComponent = GameObject.FindObjectOfType<AvatarCrate>();
+
+            var crates = AssetWarehouse.Instance.GetCrates();
+
+            foreach (Crate crate in crates)
+            {
+                if (crate.Title.Contains("BONELAB Hub"))
+                {
+                    // bootstrapperComponent.VoidG114CrateRef = new LevelCrateReference(crate.Barcode.ID);
+                    // bootstrapperComponent.MenuHollowCrateRef = new LevelCrateReference(crate.Barcode.ID);
+                }
+            }
+        }
+        private void PlayerAvatarSwitched(Avatar newAvatar)
+        {
+
+        }
+    }
 }
