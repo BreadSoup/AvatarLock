@@ -47,25 +47,6 @@ namespace melon
             }
         }
 
-        private void WarehouseReady()
-        {
-            var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode._id;
-
-            var currentAvatarBarcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID;
-
-            var bootstrapperComponent = GameObject.FindObjectOfType<AvatarCrate>();
-
-            var crates = AssetWarehouse.Instance.GetCrates();
-
-            foreach (Crate crate in crates)
-            {
-                if (crate.Title.Contains("BONELAB Hub"))
-                {
-                    // bootstrapperComponent.VoidG114CrateRef = new LevelCrateReference(crate.Barcode.ID);
-                    // bootstrapperComponent.MenuHollowCrateRef = new LevelCrateReference(crate.Barcode.ID);
-                }
-            }
-        }
         private void PlayerAvatarSwitched(Avatar newAvatar)
         {
 
