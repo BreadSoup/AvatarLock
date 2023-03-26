@@ -153,3 +153,16 @@ C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\UnityEngine.JSO
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Il2CppSystem.ServiceModel.Internals.dll
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\MelonLoader.xml
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\obj\Debug\Melon.csproj.CopyComplete
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\MelonLoader.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\0Harmony.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\MonoMod.Utils.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\MonoMod.RuntimeDetour.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\bHapticsLib.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\AssetRipper.VersionUtilities.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\AssetsTools.NET.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Tomlet.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Rocks.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\WebSocketDotNet.dll
