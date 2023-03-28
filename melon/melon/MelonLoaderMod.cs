@@ -4,16 +4,16 @@ using BoneLib;
 using HarmonyLib;
 using SLZ.Rig;
 using UnityEngine;
+using BoneLib.BoneMenu;
+using BoneLib.BoneMenu.Elements;
 using System;
 using System.Collections.Generic;
-using Il2CppSystem;
 using SLZ.Marrow.Warehouse;
 using SLZ.Bonelab;
 using Cysharp;
 using UnhollowerBaseLib;
 using SLZ.Interaction;
-using BoneLib.BoneMenu;
-using BoneLib.BoneMenu.Elements;
+using Cpp2ILInjected;
 
 
 
@@ -21,6 +21,7 @@ using BoneLib.BoneMenu.Elements;
 
 namespace melon
 {
+
     public static class BuildInfo
     {
         public const string Name = "melon"; // Name of the Mod.  (MUST BE SET)
@@ -36,57 +37,111 @@ namespace melon
             return avatar.name == "[RealHeptaRig (Marrow1)]";
         }
     }
-    public class MelonLoaderMod : MelonMod
+
+
+
+    public class Melon : MelonMod
     {
+        public override void OnInitializeMelon()
+        {
+            Melon.MelonPrefs();
+            Melon.CreateBoneMenu();
+        }
+
+        public static void MelonPrefs() //might be broken I havent testested it yet
+        {
+            Melon.MelonPrefCategory = MelonPreferences.CreateCategory("Avatar Locker");
+            Melon.MelonPrefEnabled = Melon.MelonPrefCategory.CreateEntry<bool>("IsEnabled", true, null, null, false, false, null, null);
+            Melon.IsEnabled = Melon.MelonPrefEnabled.Value;
+            Melon._previousIsEnabled = Melon.IsEnabled;
+            Melon.mpCat = MelonPreferences.CreateCategory("AvatarStatsMod");
+            Melon.CurrentBarcode = Melon.MelonPrefCategory.CreateEntry<string>("Currently locked avatar", null, null, null, false, false, null, null);
+
+        }
+
+        public static void CreateBoneMenu()
+        {
+            var category = MenuManager.CreateCategory("Avatar Locker", Color.cyan);
+            category.CreateBoolElement("Mod Toggle", Color.yellow, Melon.IsEnabled, new Action<bool>(Melon.OnSetEnabled));
+            category.CreateFunctionElement("Switch lock to current avatar", Color.white, delegate ()
+                {
+                    Melon.CurrentBarcode.Value = Player.rigManager._avatarCrate.Barcode.ID;
+                    MelonLogger.Msg(Melon.CurrentBarcode.Value);
+                    Melon.CurrentName.Value = Player.GetCurrentAvatar().name;
 
 
 
+                });
+            category.CreateFunctionElement("Current avtar value" + Melon.CurrentName.Value, Color.white, delegate ()
+            {
 
-        [HarmonyPatch(typeof(RigManager), nameof(RigManager.SwapAvatar))]
+            });
+
+
+
+        }
+
+        public static void OnSetEnabled(bool value)
+        {
+            Melon.IsEnabled = value;
+            Melon.MelonPrefEnabled.Value = value;
+            Melon.MelonPrefCategory.SaveToFile(false);
+        }
+
+        public override void OnPreferencesLoaded()
+        {
+      
+            Melon.IsEnabled = Melon.MelonPrefEnabled.Value;
+           
+        }
+
+            [HarmonyPatch(typeof(RigManager), nameof(RigManager.SwapAvatar))]
 
         public static class RigManagerPatch
         {
             public static bool Prefix() => false;
-
         }
 
-        public class Melon : MelonMod
+ 
+        public override void OnUpdate()
         {
-            [System.Obsolete]
-            public override void OnLevelWasLoaded(int level)
+            if (Melon.IsEnabled)
             {
-                LoggerInstance.Msg("Hiiiiiiiiiiii");
+                Avatar CurrentAvatar = Player.GetCurrentAvatar();
+
+                var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID;
+                if (barcode != Melon.CurrentBarcode.Value)
+                {
+                    LoggerInstance.Msg("Switcheroo");
+                    Player.rigManager.SwapAvatarCrate(Melon.CurrentBarcode.Value);
+                    LoggerInstance.Msg(barcode);
+
+                }
             }
-            public override void OnInitializeMelon()
-            {
-                LoggerInstance.Msg("Hello!");
-                Hooking.OnSwitchAvatarPrefix += (avatar) =>
-                    {
-                        if (avatar != null)
-                        {
-                            if (avatar != null)
-                            {
-                                Avatar CurrentAvatar = Player.GetCurrentAvatar();
 
-                                string Short = "fa534c5a83ee4ec6bd641fec424c4142.Avatar.CharFurv4GB";
 
-                                var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID;
 
-                                if (barcode != Short)
-                                {
-                                    LoggerInstance.Msg("Switcheroo");
-                                    Player.rigManager.SwapAvatarCrate(Short);
-                                    LoggerInstance.Msg(barcode);
-
-                                }
-                            }
-                        };
-                    };
-            }
         }
+        public static MelonPreferences_Category MelonPrefCategory { get; private set; }
+        public static BoolElement BoneMenuEnabledElement { get; private set; }
+        public static MenuCategory BoneMenuCategory { get; private set; }
+        public static MelonPreferences_Entry<bool> MelonPrefEnabled { get; private set; }
+        public static MelonPreferences_Entry<string> CurrentBarcode { get; private set; }
+        public static MelonPreferences_Entry<string> CurrentName { get; private set; }
+        public static bool IsEnabled { get; private set; }
+        private static bool _previousIsEnabled;
+        internal static Melon instance;
+        internal static MelonPreferences_Entry<string> currentBarcode;
+        internal static MelonPreferences_Category mpCat;
+
+
+
     }
 
+
 }
+
+
 
 
 

@@ -166,3 +166,4 @@ C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Pdb.
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Mdb.dll
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\Mono.Cecil.Rocks.dll
 C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\WebSocketDotNet.dll
+C:\Users\dcros\Documents\GitHub\AvatarLock\melon\melon\bin\Debug\BoneLib.dll

@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion(melon.BuildInfo.Version)]
 [assembly: AssemblyFileVersion(melon.BuildInfo.Version)]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonInfo(typeof(melon.MelonLoaderMod), melon.BuildInfo.Name, melon.BuildInfo.Version, melon.BuildInfo.Author, melon.BuildInfo.DownloadLink)]
+[assembly: MelonInfo(typeof(melon.Melon), melon.BuildInfo.Name, melon.BuildInfo.Version, melon.BuildInfo.Author, melon.BuildInfo.DownloadLink)]
 
 
 // Create and Setup a MelonModGame to mark a Mod as Universal or Compatible with specific Games.
