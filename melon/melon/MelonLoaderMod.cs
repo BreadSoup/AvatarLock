@@ -54,8 +54,8 @@ namespace melon
             Melon.MelonPrefEnabled = Melon.MelonPrefCategory.CreateEntry<bool>("IsEnabled", true, null, null, false, false, null, null);
             Melon.IsEnabled = Melon.MelonPrefEnabled.Value;
             Melon._previousIsEnabled = Melon.IsEnabled;
-            Melon.mpCat = MelonPreferences.CreateCategory("AvatarStatsMod");
             Melon.CurrentBarcode = Melon.MelonPrefCategory.CreateEntry<string>("Currently locked avatar", null, null, null, false, false, null, null);
+            Melon.CurrentName = Melon.MelonPrefCategory.CreateEntry<string>("Current name of locked avatar", null, null, null, false, false, null, null);
 
         }
 
@@ -68,11 +68,11 @@ namespace melon
                     Melon.CurrentBarcode.Value = Player.rigManager._avatarCrate.Barcode.ID;
                     MelonLogger.Msg(Melon.CurrentBarcode.Value);
                     Melon.CurrentName.Value = Player.GetCurrentAvatar().name;
-
+                    AvatarValue.SetName(Melon.CurrentName.Value);
 
 
                 });
-            category.CreateFunctionElement("Current avtar value" + Melon.CurrentName.Value, Color.white, delegate ()
+           var AvatarValue = category.CreateFunctionElement("Current avtar lock name", Color.white, delegate ()
             {
 
             });
