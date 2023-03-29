@@ -63,6 +63,9 @@ namespace melon
         {
             var category = MenuManager.CreateCategory("Avatar Locker", Color.cyan);
             category.CreateBoolElement("Mod Toggle", Color.yellow, Melon.IsEnabled, new Action<bool>(Melon.OnSetEnabled));
+            FunctionElement AvatarValue = null;
+
+
             category.CreateFunctionElement("Switch lock to current avatar", Color.white, delegate ()
                 {
                     Melon.CurrentBarcode.Value = Player.rigManager._avatarCrate.Barcode.ID;
@@ -72,7 +75,7 @@ namespace melon
 
 
                 });
-           var AvatarValue = category.CreateFunctionElement("Current avtar lock name", Color.white, delegate ()
+            AvatarValue = category.CreateFunctionElement("Current avtar lock name", Color.white, delegate ()
             {
 
             });
@@ -130,9 +133,7 @@ namespace melon
         public static MelonPreferences_Entry<string> CurrentName { get; private set; }
         public static bool IsEnabled { get; private set; }
         private static bool _previousIsEnabled;
-        internal static Melon instance;
-        internal static MelonPreferences_Entry<string> currentBarcode;
-        internal static MelonPreferences_Category mpCat;
+
 
 
 
