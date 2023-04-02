@@ -1,4 +1,4 @@
 # AvatarLock
-Mod for BONELAB that locks the avatar
-README coming soon 
+Mod for BONELAB that locks the avatar\
+README coming soon \
 I think
