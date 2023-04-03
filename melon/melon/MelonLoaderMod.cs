@@ -147,44 +147,4 @@ namespace melon
 
 
 
-//Also if by chance you care enough about patching out avatar switching while the mod was on I was too stupid to figure it out but here is a few snipits that might help
-
-/*
- * 
- * private bool Locked = false;
-public static void Prefix(RigManager __instance, Avatar avatar)
-{
-    // Do anything
-    if (No idea what to put in here)
-    {
-
-    }
-}
-
-        public override void OnUpdate() // On update is every tick
-{
-
-    if (Melon.IsEnabled) //Checks if the mod is enabled or not
-    {
-        if (Locked == true) return;
-        if (Player.rigManager != null)
-        {
-            var barcode = BoneLib.Player.rigManager._avatarCrate.Barcode.ID; //var that gets the barcode so there is no overlap to make it easier to read 
-
-            if (barcode != Melon.CurrentBarcode.Value) //Checks if the current barcode is equel to the locked one
-            {
-                Player.rigManager.SwapAvatarCrate(Melon.CurrentBarcode.Value); //Swaps the avatar
-                Locked = true;
-            }
-
-        }
-    } 
-
-
- */
-
-
-
-
-
-
+//this isnt worth an update because its internal only but if you saw the pathcing out stuff please dont bother I realized it can break fusion and maybe a few other mods
