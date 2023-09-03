@@ -17,20 +17,9 @@ namespace melon
         public const string Name = "Avatar Locker"; // Name of the Mod.  (MUST BE SET)
         public const string Author = "Bread Soup"; // Author of the Mod.  (Set as null if none)
         public const string Company = null; // Company that made the Mod.  (Set as null if none)
-        public const string Version = "1.0.0"; // Version of the Mod.  (MUST BE SET)
+        public const string Version = "1.0.1"; // Version of the Mod.  (MUST BE SET)
         public const string DownloadLink = null; // Download Link for the Mod.  (Set as null if none)
     }
-
-
-
-    [HarmonyPatch(typeof(RigManager), nameof(RigManager.SwapAvatar))]
-
-    public static class RigManagerPatch
-    {
-        public static bool Prefix() => false;
-    
-    }
-
     
     public class Melon : MelonMod //I shouldnt of named this file melon but its a lot of work to change and I dont want to do that
     {
